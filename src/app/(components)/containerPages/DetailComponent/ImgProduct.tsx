@@ -4,6 +4,7 @@ import { ProductVM } from '@/(ViewModel)/ProductVM'
 
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import Image from 'next/image';
 type Props = {
     prodDetail : ProductVM
 }
@@ -13,7 +14,7 @@ const ImgProduct = (props: Props) => {
 
 
   return (
-        <img src={props.prodDetail.image} alt={props.prodDetail.name} style={{width:"100%", height:"400px", objectFit:"cover", transform: rotate}} />
+        <Image width={300} height={300} src={props.prodDetail.image} alt={props.prodDetail.name} style={{width:"100%", height:"400px", objectFit:"cover", transform: rotate}} />
   )
 }
 
