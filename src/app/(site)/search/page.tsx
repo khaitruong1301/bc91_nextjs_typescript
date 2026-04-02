@@ -40,8 +40,8 @@ const page = async (props: Props) => {
                 return <div className="col-3 my-2" key={index}>
                     <div className="card">
 
-                            <Image width={300} height={200} src={item.image} alt={item.name} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
-                        
+                                <Image width={300} height={200} src={item.image} alt={item.name} style={{ width: "100%", height: "200px", objectFit: "cover" }} />
+                            
                         <div className="card-body">
                             <h5 className="card-title">{item.name}</h5>
                             <p className="card-text">{item.price}</p>

@@ -1,4 +1,5 @@
 //tsrafce
+import type { Metadata } from 'next'
 import { ProductVM } from "@/(ViewModel)/ProductVM";
 import { ResponseData } from "@/(ViewModel)/ResponseData";
 import ImageProduct from "../../../(components)/containerPages/DetailComponent/ImgProduct";
@@ -17,11 +18,44 @@ const getProductDetailById = async (id: string): Promise<ResponseData<ProductVM>
     }
 }
 
-
-
 type Props = {
     params: Promise<{ id: string }> | { id: string }
+}
 
+export async function generateMetadata(
+    props: Props,
+): Promise<Metadata> {
+    const { id } = await props.params;
+    const response = await getProductDetailById(id);
+    const prodDetail = response?.content || ({} as ProductVM);
+
+    return {
+        title: prodDetail.name ? `${prodDetail.name} - Shoes Store Bootcamp FE 91` : 'Product Detail - Shoes Store Bootcamp FE 91',
+        description: prodDetail.shortDescription || prodDetail.description || 'Khám phá sản phẩm chất lượng cao tại Shoes Store Bootcamp FE 91',
+        keywords: ['giày', 'shoes', 'thời trang', 'sản phẩm', prodDetail.name || ''],
+        openGraph: {
+            type: 'website',
+            locale: 'vi_VN',
+            url: `https://shoesstorebc91.vercel.app/detail/${id}`,
+            siteName: 'Shoes Store Bootcamp FE 91',
+            title: prodDetail.name || 'Sản phẩm',
+            description: prodDetail.shortDescription || 'Sản phẩm từ Shoes Store Bootcamp FE 91',
+            images: [
+                {
+                    url: prodDetail.image || 'https://apistore.cybersoft.edu.vn/images/van-old-school.png',
+                    width: 1200,
+                    height: 630,
+                    alt: prodDetail.name || 'Product Image',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: prodDetail.name || 'Sản phẩm',
+            description: prodDetail.shortDescription || 'Sản phẩm từ Shoes Store Bootcamp FE 91',
+            images: [prodDetail.image || 'https://apistore.cybersoft.edu.vn/images/van-old-school.png'],
+        },
+    };
 }
 
 const page = async (props: Props) => {
