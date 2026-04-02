@@ -18,4 +18,4 @@ const config = {
     outDir: './public',
 }
 
-export default config;
+module.exports = config;

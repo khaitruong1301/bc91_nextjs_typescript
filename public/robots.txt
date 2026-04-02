@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Host
+Host: https://shoesstorebc91.vercel.app
+
+# Sitemaps
+Sitemap: https://shoesstorebc91.vercel.app/sitemap.xml
